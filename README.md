@@ -1,15 +1,14 @@
-# Truss Interview
+# Truss Work Sample
 
 
-
-This script parses through an input csv file and provides output to stdout
+This script parses through an input csv file and provides output to stdout.
 
 ## Functionality Implemented:
-Timestamp to US/Eastern
-ZipCodes 5 digits, leading 0's
-Name Column Converted to UpperCase.
-FooDuration and BarDuration columns converted to seconds w/float
-Total column is sum of FooDuration and BarDuration columns
+* Timestamp to US/Eastern.
+* ZipCodes 5 digits, leading 0's.
+* Name Column Converted to UpperCase.
+* FooDuration and BarDuration columns converted to seconds w/float.
+* Total column is sum of FooDuration and BarDuration columns.
 
 ## Directions:
 
