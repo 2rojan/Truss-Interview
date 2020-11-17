@@ -21,7 +21,7 @@ class Normalizer:
                     a = pd.Series([newValue], index=[index], name=name)
                     newSeries = newSeries.append(a)
             except Exception:
-                sys.stderr.write("Failed to convert time for {index} {value}")
+                sys.stderr.write("Error converting time for {index} {value}")
             return newSeries
 
         # Convert HH:MM:SS.MS to seconds
@@ -34,7 +34,7 @@ class Normalizer:
                 finalValue = (hour * 3600) + (minute * 60) + second
                 return finalValue
             except ValueError:
-                sys.stderr.write("Something went wrong converting times to seconds.")
+                sys.stderr.write("Error converting times to seconds.")
 
         # Timestamp conversion. Assumed Pacific, convert to eastern. 
         # Note: Daylight Savings Time.
@@ -45,19 +45,19 @@ class Normalizer:
             df['Timestamp'] = df['Timestamp'].dt.tz_convert('US/Eastern')
             
         except ValueError:
-            sys.stderr.write("uanble to to convert TimeZone from PST to EST")
+            sys.stderr.write("Error converting TimeZone from US/Pacific to US/Eastern")
 
         # Converts ZIP(zipcodes) to 5 digits with leading Zeros
         try:
             df['ZIP'] = df['ZIP'].apply(lambda x: '{0:0>5}'.format(x))
         except ValueError:
-            sys.stderr.write("Failed to convert Zip")
+            sys.stderr.write("Error converting ZipCode to 5 digits")
 
         # Converts FullName to Uppercase. Check if another exception is suitable. 
         try:
             df['FullName'] = df['FullName'].str.upper()
         except OSError:
-            sys.stderr.write("Unable to convert name to Uppercase")
+            sys.stderr.write("Error converting name to Uppercase")
         
         # foobar function to convert durations to seconds
         # Creates new Series to be inserted
